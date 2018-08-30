@@ -1,0 +1,33 @@
+# Project: y1
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = pupsophon_private.res
+OBJ  = main.o $(RES)
+LINKOBJ  = main.o $(RES)
+LIBS =  -L"lib" ../../lib/libaldmd.a ../../lib/libagl.a ../../lib/liballeg.a ../../lib/libuser32.a ../../lib/libgdi32.a ../../lib/libopengl32.a ../../lib/libglu32.a ../../lib/libglaux.a ../../lib/libstdc++.a ../../lib/libagl.a ../../lib/liballeg.a ../../lib/libuser32.a ../../lib/libgdi32.a ../../lib/libopengl32.a ../../lib/libglu32.a  ../../lib/libglaux.a  ../../lib/libstdc++.a   -lgmon -pg  -lobjc -g3 
+INCS =  -I"include" 
+CXXINCS =  -I"lib/gcc/mingw32/3.4.2/include"  -I"include/c++/3.4.2/backward"  -I"include/c++/3.4.2/mingw32"  -I"include/c++/3.4.2"  -I"include" 
+BIN  = pupsophon.exe
+CXXFLAGS = $(CXXINCS)   -fexceptions -fexpensive-optimizations -O3 -pg -g3
+CFLAGS = $(INCS)   -fexceptions -fexpensive-optimizations -O3 -pg -g3
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before pupsophon.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "pupsophon.exe" $(LIBS)
+
+main.o: main.c
+	$(CPP) -c main.c -o main.o $(CXXFLAGS)
+
+pupsophon_private.res: pupsophon_private.rc 
+	$(WINDRES) -i pupsophon_private.rc --input-format=rc -o pupsophon_private.res -O coff 
